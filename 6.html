@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .disable {
+        color: #dd7694;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>dech53</li>
+      <li>ssssss</li>
+      <input type="text" name="title" />
+      <span></span>
+    </ul>
+    <script>
+      let keywords = ["php", "js"];
+      let title = document.querySelector("[name=title]");
+      let span = document.querySelector("span");
+      title.addEventListener("keyup", function (item) {
+        const res = keywords.some((keywords) => {
+          return this.value.indexOf(keywords) != -1;
+        });
+        if (res === false) {
+          span.innerHTML = "<h1>输入错误</h1>";
+        } else {
+          span.innerHTML = "<h1>输入正确</h1>";
+        }
+      });
+      let arr = [1, 2, 5, 5, 5, 5, 5, 5, 5, 5, 4, 2, 99];
+      // function arrA(arr) {
+      //   return arr.reduce(function (newArr,cur) {
+      //     if(newArr.includes(cur)==false) newArr.push(cur)
+      //     return newArr
+      //   }, []);
+      // }
+      // console.table(arrA(arr));
+      // function move(arr,from,to){
+      //   const newArray = [...arr]
+      //   let x = newArray.splice(from,1)
+      //   newArray.splice(to,0,...x)
+      //   return newArray
+      // }
+      // console.table(move(arr,1,3))
+      // console.log(arr.indexOf(-1));
+      // console.log(arr.lastIndexOf(2));
+      // console.log(arr.includes(6));
+      // let result = arr.find(function(item){
+      //   return item == 3
+      // })
+      // console.log(result);
+      // let array = [{name:"dech53"},{name:"d"},{name:"s"}]
+      // let result = array.find(function(user){
+      //   return user.name == "d"
+      // })
+      // console.log(result);//find可以查询引用类型
+      // function find(arr,callback){
+      //   for (const value of arr) {
+      //     if(callback(value)) return value
+      //   }
+      //   return undefined
+      // }
+      // console.log(find(arr,function(item){
+      //   return item == 8
+      // }));
+      // Array.prototype.findValue = function (callback) {
+      //   for (const value of this) {
+      //     if (callback(value)) return value;
+      //   }
+      //   return undefined;
+      // };
+      // console.log(
+      //   arr.findValue(function (item) {
+      //     return item == 5;
+      //   })
+      // );
+      // let newarr = arr.sort(function(a,b){
+      //   return a-b
+      // })
+      // console.log(newarr);
+      // function sort(arr, callback) {
+      //   for (const n in arr) {
+      //     for (const m in arr) {
+      //       if (callback(arr[n], arr[m]) < 0) {
+      //         const temp = arr[n];
+      //         arr[n] = arr[m];
+      //         arr[m] = temp;
+      //       }
+      //     }
+      //   }
+      //   return arr;
+      // }
+      // console.log(
+      //   sort(arr, function (a, b) {
+      //     return a - b;
+      //   })
+      // );
+      // let lis = document.querySelectorAll("ul li");
+      // lis.forEach((item) => {
+      //   item.addEventListener("click", function () {
+      //     this.classList.toggle("disable");
+      //   });
+      // });
+      // let names = ["d","s"]
+      // let entries = names.entries()
+      // console.log(entries.next());
+      // for (const a of names.entries()) {
+      //   console.log(a);
+      // }
+      const user = [
+        { name: "李四", js: 89 },
+        { name: "张三", js: 99 },
+        { name: "马六", js: 55 },
+        { name: "李四", js: 89 },
+      ];
+      let cart = [
+        { name: "iphone", price: 12000 },
+        { name: "imac", price: 25000 },
+        { name: "ipad", price: 3600 },
+        { name: "iphone", price: 12000 },
+        { name: "iphone", price: 12000 },
+      ];
+      // console.log(
+      //   user.every(function (value) {
+      //     return value.js >= 60;
+      //   })
+      //     ? "全部及格"
+      //     : "有人不及格"
+      // );
+      // let res = user.filter(function(user){
+      //   return user['js'] == 89
+      // })
+      // console.table(res);
+      // arr.reduce(function (pre, value, index, arr) {
+      //   console.log(pre, value);
+      //   return value;
+      // },0);
+      // function countArray(array,item){
+      //   return array.reduce(function(total,a){
+      //     total += item==a?1:0
+      //     return total
+      //   },0)
+      // }
+      // let total = countArray(arr,5)
+      // console.log(total);
+      // function arrayMax(arr) {
+      //   return arr.reduce(function (max, value) {
+      //     return max < value ? value : max;
+      //   }, arr[0]);
+      // }
+      // console.log(arrayMax(arr));
+      // function maxPrice(arr) {
+      //   return arr.reduce(function (max, price) {
+      //     return max < price ? price : max;
+      //   }, arr[0]);
+      // }
+      // console.log(maxPrice(cart));
+      // function sumPrice(arr){
+      //   return arr.reduce(function(total,price){
+      //     return (total+=price.price)
+      //   },0)
+      // }
+      // console.log(sumPrice(cart));
+      // function findPrice(arr, price) {
+      //   return arr.reduce(function (arr1, item) {
+      //     if (item.price > price) arr1.push(item);
+      //     return arr1;
+      //   }, []);
+      // }
+      // let result = findPrice(cart, 10000);
+      // let r1 = result.map(function (item) {
+      //   return item.name;
+      // });
+      // console.table(result);
+      // let newArr = arr.reduce(function (arr, cur) {
+      //   if (arr.includes(cur) === false) {
+      //     arr.push(cur);
+      //   }
+      //   return arr;
+      // }, []);
+      // console.table(newArr);
+      console.table(cart);
+      function filterGood(goods) {
+        return goods.reduce(function (arr, cur) {
+          let find = arr.find(function (v) {
+            return v.name == cur.name;
+          });
+          if (!find) arr.push(cur);
+          return arr;
+        }, []);
+      }
+      console.table(filterGood(cart));
+    </script>
+  </body>
+</html>

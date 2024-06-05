@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // let user = {
+    //     name:null,
+    //     setname: function(name){
+    //         this.name = name
+    //     },
+    //     getname:function(){
+    //         return this.name
+    //     }
+    // }
+    // user.setname("DECH53")
+    // console.log(user.getname());
+    function sum(...args){
+        return args.reduce(function(sum,value){
+            return sum+=value
+        },0)
+    }
+    console.log(sum(1,34,34,445,23,523,32));
+</script>
+</html>

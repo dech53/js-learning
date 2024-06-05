@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+</head>
+<body>
+<form action="https://www.bilibili.com" onsubmit="return post()">
+    接受1
+    <input type="checkbox" error="请接收1">
+    接受2
+    <input type="checkbox" error="请接收2">
+    <input type="submit">
+</form>
+<script>
+    function post() {
+        let map = new Map()
+        document.querySelectorAll("[error]").forEach(function (item) {
+            map.set(item, {
+                error: item.getAttribute("error"),
+                status: item.checked
+            })
+        })
+        return [...map].every(([elem, config]) => {
+            config.status || alert(config.error)
+            return config.status
+        })
+        return false
+    }
+</script>
+</html>

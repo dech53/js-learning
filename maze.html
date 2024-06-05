@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prim's Algorithm Maze Generator</title>
+    <style>
+        #maze {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+        }
+        .maze-cell {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border: 1px solid #000;
+        }
+        .wall {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="maze"></div>
+    <button onclick="generateMaze()">Generate Maze</button>
+
+    <script>
+        function generateMaze() {
+            const rows = 20;
+            const cols = 20;
+            const maze = document.getElementById('maze');
+            maze.innerHTML = ''; // Clear the maze
+
+            // Create the grid
+            const grid = Array.from({ length: rows }, () => Array(cols).fill(false));
+
+            // Function to create a cell in the maze
+            function createCell(x, y, isWall = false) {
+                const cell = document.createElement('div');
+                cell.className = 'maze-cell';
+                cell.style.left = y * 10 + 'px';
+                cell.style.top = x * 10 + 'px';
+                if (isWall) {
+                    cell.classList.add('wall');
+                }
+                maze.appendChild(cell);
+                return cell;
+            }
+
+            // Create the initial grid of walls
+            for (let x = 0; x < rows; x++) {
+                for (let y = 0; y < cols; y++) {
+                    createCell(x, y, true);
+                }
+            }
+
+            // Function to get random cell within bounds
+            function getRandomCell() {
+                return {
+                    x: Math.floor(Math.random() * rows),
+                    y: Math.floor(Math.random() * cols)
+                };
+            }
+
+            // Function to get neighbors of a cell
+            function getNeighbors(x, y) {
+                const neighbors = [];
+                if (x > 0) neighbors.push([x - 1, y]);
+                if (x < rows - 1) neighbors.push([x + 1, y]);
+                if (y > 0) neighbors.push([x, y - 1]);
+                if (y < cols - 1) neighbors.push([x, y + 1]);
+                return neighbors;
+            }
+
+            // Begin maze generation
+            const start = getRandomCell();
+            const stack = [start];
+            const visited = new Set();
+
+            while (stack.length > 0) {
+                const current = stack.pop();
+                if (!visited.has(`${current.x},${current.y}`)) {
+                    visited.add(`${current.x},${current.y}`);
+                    const neighbors = getNeighbors(current.x, current.y).filter(([nx, ny]) => !grid[nx][ny] && !visited.has(`${nx},${ny}`));
+                    if (neighbors.length > 0) {
+                        const next = neighbors[Math.floor(Math.random() * neighbors.length)];
+                        grid[next[0]][next[1]] = true;
+                        grid[current.x][current.y] = true;
+                        createCell(current.x, current.y);
+                        stack.push(next);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

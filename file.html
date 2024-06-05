@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file">
+    <button>上传文件</button>
+    <img src="" alt="">
+    <script>
+        document.querySelector("button").addEventListener('click',function(){
+            var inputFile = document.querySelector("input").files[0]
+            var imgElement = document.querySelector("img")
+            var sliceBlob = inputFile.slice(0,1024*200,inputFile.type)
+            var reader = new FileReader()
+            reader.onload = function(e){
+                imgElement.src = e.target.result
+                imgElement.style.display = "block"
+            }
+            reader.readAsDataURL(sliceBlob)
+        })
+    </script>
+</body>
+</html>
